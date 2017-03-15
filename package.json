@@ -1,0 +1,28 @@
+{
+  "name": "easy-particles-background",
+  "version": "1.0.0",
+  "description": "Creating Easy Particles Background using canvas",
+  "main": "dist/easy-particles-background.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "webpack --env build"
+  },
+  "keywords": [
+    "particles",
+    "background",
+    "canvas"
+  ],
+  "author": "Kamil Ruchała <kamil.ruchalaa@gmail.com>",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2016": "^6.22.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "webpack": "^2.2.1",
+    "yargs": "^7.0.2"
+  }
+}

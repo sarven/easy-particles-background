@@ -1,0 +1,46 @@
+body {
+  background: #333333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  font-family: Ubuntu;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.title {
+  letter-spacing: 3px;
+  font-family: Poppins;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+ul {
+  list-style: none;
+}
+
+ul > li {
+  margin: 30px 0;
+}
+
+ul > li > a {
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1px solid #ddd;
+  transition: .25s all ease;
+}
+
+ul > li > a:hover {
+  color: #000;
+  background: #fff;
+}
