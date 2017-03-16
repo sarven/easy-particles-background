@@ -18,17 +18,20 @@ class Particle
 
   /**
    * Move particle with set velocity
+   *
+   * @param int maxX
+   * @param int maxY
    */
-  move()
+  move(maxX, maxY)
   {
     this.x += this.vel.x;
     this.y += this.vel.y;
 
-    if(this.isOffXEdge()) {
+    if(this.isOffXEdge(maxX)) {
       this.vel.x = -this.vel.x;
     }
 
-    if(this.isOffYEdge()) {
+    if(this.isOffYEdge(maxY)) {
       this.vel.y = -this.vel.y;
     }
   }
@@ -36,19 +39,21 @@ class Particle
   /**
    * Check that particle is off the X edge.
    *
+   * @param int maxX
    * @return bool
    */
-  isOffXEdge() {
-    return particle.x > this.canvas.width || particle.x < 0;
+  isOffXEdge(maxX) {
+    return this.x > maxX || this.x < 0;
   }
 
   /**
    * Check that particle is off the Y edge.
    *
+   * @param maxY
    * @return bool
    */
-  isOffYEdge() {
-    return particle.y > this.canvas.height || particle.y < 0
+  isOffYEdge(maxY) {
+    return this.y > maxY || this.y < 0
   }
 }
 
