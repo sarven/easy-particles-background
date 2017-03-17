@@ -1,15 +1,13 @@
 import Particle from './Particle';
 
-class ParticleCreator
-{
+class ParticleCreator {
   /**
    * ParticleCreator constructor.
    *
    * @param object settings
    * @param object canvas
    */
-  constructor(settings, canvas)
-  {
+  constructor(settings, canvas) {
     this.settings = settings;
     this.canvas = canvas;
   }
@@ -20,11 +18,10 @@ class ParticleCreator
    * @param int count
    * @return Particle[]
    */
-  createMany(count)
-  {
+  createMany(count) {
     let particles = [];
 
-    for(let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       particles.push(this.create());
     }
 
@@ -36,14 +33,12 @@ class ParticleCreator
    *
    * @return Particle
    */
-  create()
-  {
+  create() {
     return new Particle(
       Math.random() * this.canvas.width,
-      Math.random() * this.canvas.height,
-      {
-          x: (Math.random() - 0.5) * 5, // [-2.5, 2.5)
-          y: (Math.random() - 0.5) * 5 // [-2.5, 2.5)
+      Math.random() * this.canvas.height, {
+        x: (Math.random() - 0.5) * 5, // [-2.5, 2.5)
+        y: (Math.random() - 0.5) * 5 // [-2.5, 2.5)
       },
       this.settings.particleRadius
     );

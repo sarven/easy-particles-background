@@ -1,5 +1,4 @@
-class Particle
-{
+class Particle {
   /**
    * Particle constructor
    *
@@ -8,8 +7,7 @@ class Particle
    * @param array vel
    * @param int radius
    */
-  constructor(x, y, vel, radius)
-  {
+  constructor(x, y, vel, radius) {
     this.x = x;
     this.y = y;
     this.vel = vel;
@@ -22,16 +20,15 @@ class Particle
    * @param int maxX
    * @param int maxY
    */
-  move(maxX, maxY)
-  {
+  move(maxX, maxY) {
     this.x += this.vel.x;
     this.y += this.vel.y;
 
-    if(this.isOffXEdge(maxX)) {
+    if (this.isOffXEdge(maxX)) {
       this.vel.x = -this.vel.x;
     }
 
-    if(this.isOffYEdge(maxY)) {
+    if (this.isOffYEdge(maxY)) {
       this.vel.y = -this.vel.y;
     }
   }
