@@ -7,7 +7,7 @@ Simple library to create particles background in canvas
 
 ## Usage
 
-```javascript
+```html
 <canvas id="background"></canvas>
 <script src="../dist/EasyParticlesBackground.min.js"></script>
 <script>
