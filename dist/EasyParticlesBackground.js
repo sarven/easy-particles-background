@@ -75,7 +75,7 @@ var EasyParticlesBackground =
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -93,94 +93,96 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Background = function () {
-    /**
-     * Background constructor, get canvas element, set options
-     *
-     * @param string canvasID
-     * @param object settings
-     */
-    function Background(canvasID, settings) {
-        _classCallCheck(this, Background);
+  /**
+   * Background constructor, get canvas element, set options
+   *
+   * @param string canvasID
+   * @param object settings
+   */
+  function Background(canvasID, settings) {
+    _classCallCheck(this, Background);
 
-        this.setSettings(settings);
+    this.setSettings(settings);
 
-        this.canvas = document.getElementById(canvasID);
-        this.ctx = this.canvas.getContext('2d');
+    this.canvas = document.getElementById(canvasID);
+    this.ctx = this.canvas.getContext('2d');
 
-        this.particleCreator = new _ParticleCreator2.default(this.settings, this.canvas);
-        this.drawer = new _Drawer2.default(this.settings, this.ctx);
+    this.particleCreator = new _ParticleCreator2.default(this.settings, this.canvas);
+    this.drawer = new _Drawer2.default(this.settings, this.ctx);
 
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
 
-        this.particles = [];
+    this.particles = [];
 
-        this.init();
+    this.init();
+  }
+
+  /**
+   * Set settings
+   *
+   * @param object settings
+   */
+
+
+  _createClass(Background, [{
+    key: 'setSettings',
+    value: function setSettings(settings) {
+      this.settings = {
+        particleColor: this.getOption(settings, 'particleColor', '#000000'),
+        particleRadius: this.getOption(settings, 'particleRadius', 3),
+        particleDistance: this.getOption(settings, 'particleDistance', 100),
+        particlesCount: this.getOption(settings, 'particlesCount', 300),
+        lineColor: this.getOption(settings, 'lineColor', '#000000'),
+        lineWidth: this.getOption(settings, 'lineWidth', 1)
+      };
     }
+
     /**
-     * Set settings
+     * Get option
      *
      * @param object settings
+     * @param string name
+     * @param mixed default
      */
 
+  }, {
+    key: 'getOption',
+    value: function getOption(settings, name, defaultValue) {
+      return settings.hasOwnProperty(name) ? settings[name] : defaultValue;
+    }
 
-    _createClass(Background, [{
-        key: 'setSettings',
-        value: function setSettings(settings) {
-            this.settings = {
-                particleColor: this.getOption(settings, 'particleColor', '#000000'),
-                particleRadius: this.getOption(settings, 'particleRadius', 3),
-                particleDistance: this.getOption(settings, 'particleDistance', 100),
-                particlesCount: this.getOption(settings, 'particlesCount', 300),
-                lineColor: this.getOption(settings, 'lineColor', '#000000'),
-                lineWidth: this.getOption(settings, 'lineWidth', 1)
-            };
-        }
-        /**
-         * Get option
-         *
-         * @param object settings
-         * @param string name
-         * @param mixed default
-         */
+    /**
+     * Create particles and start loop
+     */
 
-    }, {
-        key: 'getOption',
-        value: function getOption(settings, name, defaultValue) {
-            return settings.hasOwnProperty(name) ? settings[name] : defaultValue;
-        }
+  }, {
+    key: 'init',
+    value: function init() {
+      this.particles = this.particleCreator.createMany(this.settings.particlesCount);
+      this.loop();
+    }
 
-        /**
-         * Create particles and start loop
-         */
+    /**
+     * Loop, clear and drawParticles
+     */
 
-    }, {
-        key: 'init',
-        value: function init() {
-            this.particles = this.particleCreator.createMany(this.settings.particlesCount);
-            this.loop();
-        }
+  }, {
+    key: 'loop',
+    value: function loop() {
+      var _this = this;
 
-        /**
-         * Loop, clear and drawParticles
-         */
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.particles.forEach(function (particle) {
+        particle.move(_this.canvas.width, _this.canvas.height);
+        _this.drawer.drawLines(_this.particles, particle);
+        _this.drawer.drawParticle(particle);
+      });
+      window.requestAnimationFrame(this.loop.bind(this));
+    }
+  }]);
 
-    }, {
-        key: 'loop',
-        value: function loop() {
-            var _this = this;
-
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.particles.forEach(function (particle) {
-                particle.move(_this.canvas.width, _this.canvas.height);
-                _this.drawer.drawLines(_this.particles, particle);
-                _this.drawer.drawParticle(particle);
-            });
-            window.requestAnimationFrame(this.loop.bind(this));
-        }
-    }]);
-
-    return Background;
+  return Background;
 }();
 
 exports.default = Background;
